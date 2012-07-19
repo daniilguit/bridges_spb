@@ -91,7 +91,7 @@ public class BridgesActivity extends SherlockFragmentActivity {
     @Override
     protected void onPause() {
         SharedPreferences.Editor edit = getSharedPreferences().edit();
-        edit.putInt(TAB_INDEX_PROPERTY, getActionBar().getSelectedNavigationIndex());
+        edit.putInt(TAB_INDEX_PROPERTY, getSupportActionBar().getSelectedNavigationIndex());
         edit.putInt(SORTING_ORDER, sortingOrder.index);
         edit.commit();
         updateTimer.cancel();
