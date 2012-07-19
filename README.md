@@ -1,4 +1,4 @@
-bridges_spb
+Bridges SPb
 ===========
 
-Android application for monitoring state of bridges in Saint-Petersburg
+Android application displaying state of bridges in Saint-Petersburg

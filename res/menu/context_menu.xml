@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/sort_order" android:title="@string/sort_order" android:icon="@drawable/ic_action_sort"
+          android:showAsAction="ifRoom"/>
+    <item android:id="@+id/choose_favourite" android:title="@string/choose_favourite"
+          android:icon="@drawable/ic_action_star" android:showAsAction="ifRoom"/>
+</menu>

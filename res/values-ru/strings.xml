@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мосты</string>
+    <string name="sort_order">Порядок сортировки</string>
+
+    <string name="sort_dialog_title">Сортировать мосты:</string>
+    <string name="by_name">По имени</string>
+    <string name="by_open">По времени открытия</string>
+    <string name="by_distance">По рассотянию</string>
+
+    <string name="choose_favourite">Избранные мосты</string>
+
+    <string name="manage_filter_button_text">Выбрать избранные мосты</string>
+
+    <string name="all_bridges_tab_label">Все</string>
+    <string name="favourites_bridges_tab_label">Избранные</string>
+</resources>

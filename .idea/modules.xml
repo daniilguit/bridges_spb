@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bridges.iml" filepath="$PROJECT_DIR$/bridges.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/library/library.iml" filepath="$SHERLOCK_PATH$/library/library.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/parent.iml" filepath="$SHERLOCK_PATH$/parent.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/samples/parent-sample.iml" filepath="$SHERLOCK_PATH$/samples/parent-sample.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/samples/demos/sample-demos.iml" filepath="$SHERLOCK_PATH$/samples/demos/sample-demos.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/samples/fragments/sample-fragments.iml" filepath="$SHERLOCK_PATH$/samples/fragments/sample-fragments.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/samples/known-bugs/sample-known-bugs.iml" filepath="$SHERLOCK_PATH$/samples/known-bugs/sample-known-bugs.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/samples/roboguice/sample-roboguice.iml" filepath="$SHERLOCK_PATH$/samples/roboguice/sample-roboguice.iml" />
+      <module fileurl="file://$SHERLOCK_PATH$/samples/styled/sample-styled.iml" filepath="$SHERLOCK_PATH$/samples/styled/sample-styled.iml" />
+    </modules>
+  </component>
+</project>
+

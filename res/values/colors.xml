@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="open_bridge_row">#0A0</color>
+    <color name="closed_bridge_row">#A00</color>
+</resources>

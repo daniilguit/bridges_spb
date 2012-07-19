@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bridges SPb</string>
+    <string name="sort_order">Sorting order</string>
+
+    <string name="sort_dialog_title">Sort by:</string>
+    <string name="by_name">Name</string>
+    <string name="by_open">Opening time</string>
+    <string name="by_distance">Distance</string>
+
+    <string name="choose_favourite">Favoruties bridges</string>
+
+    <string name="manage_filter_button_text">Choose favourites bridge</string>
+
+    <string name="all_bridges_tab_label">All</string>
+    <string name="favourites_bridges_tab_label">Favourites</string>
+</resources>
