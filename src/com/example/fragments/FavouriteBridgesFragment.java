@@ -42,7 +42,7 @@ public class FavouriteBridgesFragment extends AbstractFragment {
             }
         });
         updateButtonVisibility();
-        bridgesListView.setAdapter(adapter);
+        initListView(bridgesListView);
         return view;
     }
 

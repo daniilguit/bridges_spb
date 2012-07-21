@@ -4,8 +4,13 @@
     <properties id="android-properties">
       <options>
         <option name="includeSystemProGuardCfgFile" value="true" />
-        <option name="keyStoreUrl" value="file://" />
-        <option name="proGuardCfgFileUrl" value="file://" />
+        <option name="keyAlias" value="alias" />
+        <option name="keyPassword" value="SGVsbG8yQW5kcm9pZA==" />
+        <option name="keyStorePassword" value="SGVsbG8yQW5kcm9pZA==" />
+        <option name="keyStoreUrl" value="file://$USER_HOME$/Documents/Android/androidsign" />
+        <option name="proGuardCfgFileUrl" value="file://$PROJECT_DIR$/proguard.cfg" />
+        <option name="runProGuard" value="true" />
+        <option name="signingMode" value="RELEASE_SIGNED" />
       </options>
     </properties>
     <root id="archive" name="bridges.apk">

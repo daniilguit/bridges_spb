@@ -16,23 +16,15 @@
     <option name="originalFiles">
       <list>
         <option value="$SHERLOCK_PATH$/pom.xml" />
+        <option value="$SHERLOCK_PATH$/pom.xml" />
+        <option value="$SHERLOCK_PATH$/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$SHERLOCK_PATH$/samples/demos/pom.xml" />
-        <option value="$SHERLOCK_PATH$/samples/fragments/pom.xml" />
-        <option value="$SHERLOCK_PATH$/samples/known-bugs/pom.xml" />
-        <option value="$SHERLOCK_PATH$/samples/pom.xml" />
-        <option value="$SHERLOCK_PATH$/samples/roboguice/pom.xml" />
-        <option value="$SHERLOCK_PATH$/samples/styled/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="JDK1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="AndroidSDK" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />

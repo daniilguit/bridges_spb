@@ -1,15 +1,20 @@
 package com.example.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Handler;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.example.BridgesActivity;
 import com.example.BridgesListAdapter;
 import com.example.OptionsListener;
-import com.example.core.Bridge;
-import com.example.core.BridgesList;
-import com.example.core.BridgesListener;
-import com.example.core.SortingOrder;
+import com.example.core.*;
+
+import static com.example.LocationUtil.locationUri;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +23,7 @@ import com.example.core.SortingOrder;
  * Time: 22:11
  * To change this template use File | Settings | File Templates.
  */
-public abstract class AbstractFragment extends SherlockFragment implements OptionsListener, BridgesListener {
+public abstract class AbstractFragment extends SherlockFragment implements OptionsListener, BridgesListener, AdapterView.OnItemClickListener {
     protected BridgesActivity activity;
     protected BridgesList bridgesList;
     protected BridgesListAdapter adapter;
@@ -48,7 +53,7 @@ public abstract class AbstractFragment extends SherlockFragment implements Optio
         bridgesList.removeListener(this);
     }
 
-    protected abstract BridgesListAdapter createAdapter() ;
+    protected abstract BridgesListAdapter createAdapter();
 
     @Override
     public void sortingOrderChanged(SortingOrder order) {
@@ -69,11 +74,24 @@ public abstract class AbstractFragment extends SherlockFragment implements Optio
     };
 
     @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        BridgeDescription bridgeDescription = adapter.getItem(position).getDescription();
+        Location bridgeLocation = bridgeDescription.location;
+        Intent locationIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(locationUri(bridgeLocation, 15)));
+        activity.startActivity(locationIntent);
+    }
+
+    @Override
     public void updated() {
         updateHandler.post(updateRunnable);
     }
 
     @Override
     public void updated(Bridge bridge) {
+    }
+
+    protected void initListView(ListView bridgesListView) {
+        bridgesListView.setAdapter(adapter);
+        bridgesListView.setOnItemClickListener(this);
     }
 }

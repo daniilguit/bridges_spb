@@ -103,7 +103,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
     }
 
     private void requestLocationUpdates(String provider) {
-        locationManager.requestLocationUpdates(provider, 15000, 100f, this);
+        locationManager.requestLocationUpdates(provider, 15000, 50f, this);
     }
 
     private Location getInitialUserLocation() {
@@ -158,30 +158,32 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         }
         return super.onOptionsItemSelected(item);
     }
-    private String[] cachedSortOrdersLabels;
 
-    private final DialogInterface.OnClickListener sortDialogListener = new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int item) {
-            setSortingOrder(SortingOrder.values()[item]);
-            dialog.dismiss();
-        }
-    };
+    private AlertDialog sortDialog;
 
-
-    public void showSortDialog() {
-        if (cachedSortOrdersLabels == null) {
-            cachedSortOrdersLabels = new String[]{
-                    getString(SortingOrder.BY_NAME.label),
-                    getString(SortingOrder.BY_OPEN.label),
-                    getString(SortingOrder.BY_DISTANCE.label)
-            };
-        }
+    private AlertDialog createSortDialog() {
+        String [] sortOrdersLabels = new String[]{
+                getString(SortingOrder.BY_NAME.label),
+                getString(SortingOrder.BY_OPEN.label),
+                getString(SortingOrder.BY_DISTANCE.label)
+        };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.sort_dialog_title));
 
-        builder.setSingleChoiceItems(cachedSortOrdersLabels, sortingOrder.index, sortDialogListener);
-        AlertDialog alert = builder.create();
-        alert.show();
+        builder.setSingleChoiceItems(sortOrdersLabels, sortingOrder.index, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                setSortingOrder(SortingOrder.values()[item]);
+                dialog.dismiss();
+            }
+        });
+        return builder.create();
+    }
+
+    public void showSortDialog() {
+        if (sortDialog == null) {
+            sortDialog = createSortDialog();
+        }
+        sortDialog.show();
     }
     private String[] cachedBridgesNames;
     private boolean[] cachedBridgesSelection;

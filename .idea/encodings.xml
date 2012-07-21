@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$SHERLOCK_PATH$" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/library" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/samples" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/samples/demos" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/samples/fragments" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/samples/known-bugs" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/samples/roboguice" charset="UTF-8" />
+    <file url="file://$SHERLOCK_PATH$/samples/styled" charset="UTF-8" />
+  </component>
 </project>
 
