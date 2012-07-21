@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -19,17 +20,23 @@ import com.example.core.SortingOrder;
 import com.example.fragments.AllBridgesFragment;
 import com.example.fragments.FavouriteBridgesFragment;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class BridgesActivity extends SherlockFragmentActivity {
+public class BridgesActivity extends SherlockFragmentActivity implements LocationListener {
 
     public static final String SORTING_ORDER = "sortingOrder";
     public static final String FAVOURITE_PREFS = "favourite";
     private static final String GENERAL_PREFS = "prefs";
     public static final String TAB_INDEX_PROPERTY = "tabIndex";
 
+    public static final int OLDEST_USED_POSITION = 1000 * 60 * 5; // 5 mins
+
     private final List<OptionsListener> listeners = new ArrayList<OptionsListener>();
 
+    private Location lastUserLocation;
     private LocationManager locationManager;
     private SortingOrder sortingOrder = SortingOrder.BY_NAME;
     private Timer updateTimer;
@@ -78,6 +85,10 @@ public class BridgesActivity extends SherlockFragmentActivity {
 
     @Override
     protected void onResume() {
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 100f, this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 15000, 100f, this);
+        locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 15000, 100f, this);
+        lastUserLocation = getInitialUserLocation();
         super.onResume();
         updateTimer = new Timer(true);
         updateTimer.scheduleAtFixedRate(new TimerTask() {
@@ -85,11 +96,12 @@ public class BridgesActivity extends SherlockFragmentActivity {
             public void run() {
                 bridgesList.update(getUserLocation());
             }
-        }, 0, 15000);
+        }, 0, 10000);
     }
 
     @Override
     protected void onPause() {
+        locationManager.removeUpdates(this);
         SharedPreferences.Editor edit = getSharedPreferences().edit();
         edit.putInt(TAB_INDEX_PROPERTY, getSupportActionBar().getSelectedNavigationIndex());
         edit.putInt(SORTING_ORDER, sortingOrder.index);
@@ -99,8 +111,8 @@ public class BridgesActivity extends SherlockFragmentActivity {
     }
 
     private Location getUserLocation() {
-        for (String provider : locationManager.getProviders(true)) {
-            return locationManager.getLastKnownLocation(provider);
+        if (lastUserLocation != null && lastUserLocation.getTime() > System.currentTimeMillis() - OLDEST_USED_POSITION) {
+            return lastUserLocation;
         }
         return null;
     }
@@ -192,5 +204,34 @@ public class BridgesActivity extends SherlockFragmentActivity {
 
     public void removeOptionsListener(OptionsListener listener) {
         listeners.remove(listener);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        lastUserLocation = location;
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+    }
+
+    private Location getInitialUserLocation() {
+        List<String> providers = locationManager.getProviders(true);
+        for (int i = providers.size() - 1; i >= 0; i--) {
+            Location result = locationManager.getLastKnownLocation(providers.get(i));
+            if (result != null) {
+                return result;
+            }
+        }
+        return null;
     }
 }
