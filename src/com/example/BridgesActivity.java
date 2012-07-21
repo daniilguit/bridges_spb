@@ -33,6 +33,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
     public static final String TAB_INDEX_PROPERTY = "tabIndex";
 
     public static final int OLDEST_USED_POSITION = 1000 * 60 * 5; // 5 mins
+    public static final int UPDATE_PERIOD = 10000;
 
     private final List<OptionsListener> listeners = new ArrayList<OptionsListener>();
 
@@ -85,29 +86,35 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
 
     @Override
     protected void onResume() {
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 100f, this);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 15000, 100f, this);
-        locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 15000, 100f, this);
-        lastUserLocation = getInitialUserLocation();
         super.onResume();
+
+        requestLocationUpdates(LocationManager.GPS_PROVIDER);
+        requestLocationUpdates(LocationManager.NETWORK_PROVIDER);
+        requestLocationUpdates(LocationManager.PASSIVE_PROVIDER);
+        lastUserLocation = getInitialUserLocation();
+
         updateTimer = new Timer(true);
         updateTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 bridgesList.update(getUserLocation());
             }
-        }, 0, 10000);
+        }, 0, UPDATE_PERIOD);
     }
 
-    @Override
-    protected void onPause() {
-        locationManager.removeUpdates(this);
-        SharedPreferences.Editor edit = getSharedPreferences().edit();
-        edit.putInt(TAB_INDEX_PROPERTY, getSupportActionBar().getSelectedNavigationIndex());
-        edit.putInt(SORTING_ORDER, sortingOrder.index);
-        edit.commit();
-        updateTimer.cancel();
-        super.onPause();
+    private void requestLocationUpdates(String provider) {
+        locationManager.requestLocationUpdates(provider, 15000, 100f, this);
+    }
+
+    private Location getInitialUserLocation() {
+        List<String> providers = locationManager.getProviders(true);
+        for (int i = providers.size() - 1; i >= 0; i--) {
+            Location result = locationManager.getLastKnownLocation(providers.get(i));
+            if (result != null) {
+                return result;
+            }
+        }
+        return null;
     }
 
     private Location getUserLocation() {
@@ -119,6 +126,17 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
 
     private SharedPreferences getSharedPreferences() {
         return getSharedPreferences(GENERAL_PREFS, 0);
+    }
+
+    @Override
+    protected void onPause() {
+        locationManager.removeUpdates(this);
+        SharedPreferences.Editor edit = getSharedPreferences().edit();
+        edit.putInt(TAB_INDEX_PROPERTY, getSupportActionBar().getSelectedNavigationIndex());
+        edit.putInt(SORTING_ORDER, sortingOrder.index);
+        edit.commit();
+        updateTimer.cancel();
+        super.onPause();
     }
 
     @Override
@@ -140,14 +158,15 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         }
         return super.onOptionsItemSelected(item);
     }
-
     private String[] cachedSortOrdersLabels;
+
     private final DialogInterface.OnClickListener sortDialogListener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int item) {
             setSortingOrder(SortingOrder.values()[item]);
             dialog.dismiss();
         }
     };
+
 
     public void showSortDialog() {
         if (cachedSortOrdersLabels == null) {
@@ -164,11 +183,10 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         AlertDialog alert = builder.create();
         alert.show();
     }
-
-
     private String[] cachedBridgesNames;
     private boolean[] cachedBridgesSelection;
-    private final DialogInterface.OnMultiChoiceClickListener favoruitesDialgListener = new DialogInterface.OnMultiChoiceClickListener() {
+
+    private final DialogInterface.OnMultiChoiceClickListener favouritesDialogListener = new DialogInterface.OnMultiChoiceClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int index, boolean check) {
             Bridge bridge = bridgesList.get(index);
@@ -190,7 +208,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.choose_favourite));
 
-        builder.setMultiChoiceItems(cachedBridgesNames, cachedBridgesSelection, favoruitesDialgListener);
+        builder.setMultiChoiceItems(cachedBridgesNames, cachedBridgesSelection, favouritesDialogListener);
         AlertDialog alert = builder.create();
         alert.show();
     }
@@ -213,7 +231,6 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
-
     }
 
     @Override
@@ -222,16 +239,5 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
 
     @Override
     public void onProviderDisabled(String s) {
-    }
-
-    private Location getInitialUserLocation() {
-        List<String> providers = locationManager.getProviders(true);
-        for (int i = providers.size() - 1; i >= 0; i--) {
-            Location result = locationManager.getLastKnownLocation(providers.get(i));
-            if (result != null) {
-                return result;
-            }
-        }
-        return null;
     }
 }
