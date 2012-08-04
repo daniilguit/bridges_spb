@@ -1,4 +1,4 @@
-package com.example.core;
+package com.ad.bridges_spb.core;
 
 import android.location.Location;
 
@@ -14,6 +14,24 @@ import java.util.Calendar;
 public class Bridge {
     private BridgesList list;
     private final BridgeDescription description;
+
+    private String name;
+
+    public BridgesList getList() {
+        return list;
+    }
+
+    public void setList(BridgesList list) {
+        this.list = list;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
 
     private double distance;
     private int minutesToChange;

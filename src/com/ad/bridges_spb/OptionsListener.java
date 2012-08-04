@@ -1,6 +1,6 @@
-package com.example;
+package com.ad.bridges_spb;
 
-import com.example.core.SortingOrder;
+import com.ad.bridges_spb.core.SortingOrder;
 
 /**
  * Created with IntelliJ IDEA.

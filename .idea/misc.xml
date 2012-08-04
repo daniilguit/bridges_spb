@@ -18,7 +18,19 @@
         <option value="$SHERLOCK_PATH$/pom.xml" />
         <option value="$SHERLOCK_PATH$/pom.xml" />
         <option value="$SHERLOCK_PATH$/pom.xml" />
+        <option value="$SHERLOCK_PATH$/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$SHERLOCK_PATH$/pom.xml" />
+        <option value="$SHERLOCK_PATH$/samples/demos/pom.xml" />
+        <option value="$SHERLOCK_PATH$/samples/fragments/pom.xml" />
+        <option value="$SHERLOCK_PATH$/samples/known-bugs/pom.xml" />
+        <option value="$SHERLOCK_PATH$/samples/pom.xml" />
+        <option value="$SHERLOCK_PATH$/samples/roboguice/pom.xml" />
+        <option value="$SHERLOCK_PATH$/samples/styled/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectResources">

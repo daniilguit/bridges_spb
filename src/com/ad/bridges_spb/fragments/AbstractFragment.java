@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.ad.bridges_spb.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.example.BridgesActivity;
-import com.example.BridgesListAdapter;
-import com.example.OptionsListener;
-import com.example.core.*;
+import com.ad.bridges_spb.BridgesActivity;
+import com.ad.bridges_spb.BridgesListAdapter;
+import com.ad.bridges_spb.OptionsListener;
+import com.ad.bridges_spb.core.*;
 
-import static com.example.LocationUtil.locationUri;
+import static com.ad.bridges_spb.LocationUtil.locationUri;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,10 +29,16 @@ public abstract class AbstractFragment extends SherlockFragment implements Optio
     protected BridgesListAdapter adapter;
     protected Handler updateHandler = new Handler();
 
-    protected SortingOrder sortingOrder;
-
     protected AbstractFragment() {
         super();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.loadResources();
+        adapter.sort(activity.getSortingOrder());
+        updateInUi();
     }
 
     @Override
@@ -43,7 +49,7 @@ public abstract class AbstractFragment extends SherlockFragment implements Optio
         bridgesList.addListener(this);
         activity.addOptionsListener(this);
         adapter = createAdapter();
-        sortingOrder = activity.getSortingOrder();
+        adapter.loadResources();
     }
 
     @Override
@@ -57,12 +63,11 @@ public abstract class AbstractFragment extends SherlockFragment implements Optio
 
     @Override
     public void sortingOrderChanged(SortingOrder order) {
-        this.sortingOrder = order;
-        adapter.sort(order);
-        adapter.notifyDataSetChanged();
+        updateInUi();
     }
 
     protected void updateInUi() {
+        adapter.sort(activity.getSortingOrder());
         adapter.notifyDataSetChanged();
     }
 

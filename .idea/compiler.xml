@@ -19,9 +19,9 @@
       <directory url="file://$SHERLOCK_PATH$/samples/styled/gen" includeSubdirectories="true" />
       <directory url="file://$SHERLOCK_PATH$/samples/styled/target/generated-sources/r" includeSubdirectories="true" />
       <directory url="file://$SHERLOCK_PATH$/samples/styled/target/generated-sources/aidl" includeSubdirectories="true" />
+      <directory url="file://$SHERLOCK_PATH$/library/gen" includeSubdirectories="true" />
       <directory url="file://$SHERLOCK_PATH$/library/target/generated-sources/r" includeSubdirectories="true" />
       <directory url="file://$SHERLOCK_PATH$/library/target/generated-sources/aidl" includeSubdirectories="true" />
-      <directory url="file://$SHERLOCK_PATH$/library/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>
@@ -37,6 +37,9 @@
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
     <annotationProcessing enabled="false" useClasspath="true" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.6" />
   </component>
 </project>
 

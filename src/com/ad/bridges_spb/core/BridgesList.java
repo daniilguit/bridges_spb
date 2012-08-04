@@ -1,8 +1,9 @@
-package com.example.core;
+package com.ad.bridges_spb.core;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.location.Location;
-import com.example.fragments.AbstractFragment;
+import com.ad.bridges_spb.R;
 
 import java.util.*;
 
@@ -21,9 +22,8 @@ public class BridgesList extends AbstractList<Bridge>{
     public BridgesList(SharedPreferences preferences, BridgeDescription[] descriptions) {
         this.preferences = preferences;
         for (BridgeDescription description : descriptions) {
-            storage.add(new Bridge(this, description, preferences.getBoolean(description.name, false)));
+            storage.add(new Bridge(this, description, preferences.getBoolean(description.nameId + "", false)));
         }
-        Collections.sort(storage, SortingOrder.BY_NAME);
     }
 
     public void addListener(BridgesListener listener) {
@@ -32,6 +32,12 @@ public class BridgesList extends AbstractList<Bridge>{
 
     public void removeListener(BridgesListener listener) {
         listeners.remove(listener);
+    }
+
+    public void updateNames(Resources resources) {
+        for (Bridge bridge : this) {
+            bridge.setName(resources.getString(bridge.getDescription().nameId));
+        }
     }
 
     public void update(Location location) {
@@ -46,7 +52,7 @@ public class BridgesList extends AbstractList<Bridge>{
 
     void notifyUpdated(Bridge bridge) {
         SharedPreferences.Editor edit = preferences.edit();
-        edit.putBoolean(bridge.getDescription().name, bridge.isFavourite());
+        edit.putBoolean(bridge.getDescription().nameId + "", bridge.isFavourite());
         edit.commit();
         for (BridgesListener listener : listeners) {
             listener.updated(bridge);

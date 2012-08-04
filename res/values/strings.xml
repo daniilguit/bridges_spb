@@ -8,10 +8,27 @@
     <string name="by_open">Opening time</string>
     <string name="by_distance">Distance</string>
 
-    <string name="choose_favourite">Favoruties bridges</string>
+    <string name="choose_favourite">Favourite bridges</string>
 
-    <string name="manage_filter_button_text">Choose favourites bridge</string>
+    <string name="manage_filter_button_text">Choose favourite bridges</string>
 
     <string name="all_bridges_tab_label">All</string>
     <string name="favourites_bridges_tab_label">Favourites</string>
+
+    <string name="after_part">in</string>
+    <string name="km_part">km</string>
+
+    <string name="bn_Volodarskij">Volodarskiy most</string>
+    <string name="bn_Finljandskij">Finlyandskiy most</string>
+    <string name="bn_AleksandraNevskogo">most Aleksandra Nevskogo</string>
+    <string name="bn_Bolsheohtinskij">Bol\'sheohtinskiy most</string>
+    <string name="bn_Litejnyj">Liteyniy most</string>
+    <string name="bn_Troickij">Troitskiy most</string>
+    <string name="bn_Dvorcovyj">Dvortsoviy most</string>
+    <string name="bn_Blagovewenskij">Blagoveschenskiy most</string>
+    <string name="bn_Birzhevoj">Birzhevoy most</string>
+    <string name="bn_Tuchkov">Tuchkov most</string>
+    <string name="bn_Sampsonievskij">Sampsonievskiy most</string>
+    <string name="bn_Grenaderskij">Grenaderskiy most</string>
+    <string name="bn_Kantemirovskij">Kantemirovskiy most</string>
 </resources>

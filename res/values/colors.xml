@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="open_bridge_row">#0A0</color>
-    <color name="closed_bridge_row">#A00</color>
+    <color name="open_bridge_row">#00AA00</color>
+    <color name="closed_bridge_row">#AA0000</color>
+    <color name="nearly_closed_bridge_row">#FA6900</color>
 </resources>

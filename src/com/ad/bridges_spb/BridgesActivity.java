@@ -1,4 +1,4 @@
-package com.example;
+package com.ad.bridges_spb;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,12 +13,12 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.example.core.Bridge;
-import com.example.core.BridgesDescriptions;
-import com.example.core.BridgesList;
-import com.example.core.SortingOrder;
-import com.example.fragments.AllBridgesFragment;
-import com.example.fragments.FavouriteBridgesFragment;
+import com.ad.bridges_spb.core.Bridge;
+import com.ad.bridges_spb.core.BridgesDescriptions;
+import com.ad.bridges_spb.core.BridgesList;
+import com.ad.bridges_spb.core.SortingOrder;
+import com.ad.bridges_spb.fragments.AllBridgesFragment;
+import com.ad.bridges_spb.fragments.FavouriteBridgesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,12 +87,11 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
     @Override
     protected void onResume() {
         super.onResume();
-
         requestLocationUpdates(LocationManager.GPS_PROVIDER);
         requestLocationUpdates(LocationManager.NETWORK_PROVIDER);
         requestLocationUpdates(LocationManager.PASSIVE_PROVIDER);
         lastUserLocation = getInitialUserLocation();
-
+        bridgesList.updateNames(getResources());
         updateTimer = new Timer(true);
         updateTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -162,7 +161,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
     private AlertDialog sortDialog;
 
     private AlertDialog createSortDialog() {
-        String [] sortOrdersLabels = new String[]{
+        String[] sortOrdersLabels = new String[]{
                 getString(SortingOrder.BY_NAME.label),
                 getString(SortingOrder.BY_OPEN.label),
                 getString(SortingOrder.BY_DISTANCE.label)
@@ -185,6 +184,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         }
         sortDialog.show();
     }
+
     private String[] cachedBridgesNames;
     private boolean[] cachedBridgesSelection;
 
@@ -200,7 +200,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         if (cachedBridgesNames == null) {
             cachedBridgesNames = new String[bridgesList.size()];
             for (int i = 0; i < cachedBridgesSelection.length; i++) {
-                cachedBridgesNames[i] = bridgesList.get(i).getDescription().name;
+                cachedBridgesNames[i] = getString(bridgesList.get(i).getDescription().nameId);
             }
         }
         for (int i = 0; i < cachedBridgesSelection.length; i++) {
@@ -208,7 +208,7 @@ public class BridgesActivity extends SherlockFragmentActivity implements Locatio
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.choose_favourite));
+        builder.setTitle(R.string.choose_favourite);
 
         builder.setMultiChoiceItems(cachedBridgesNames, cachedBridgesSelection, favouritesDialogListener);
         AlertDialog alert = builder.create();

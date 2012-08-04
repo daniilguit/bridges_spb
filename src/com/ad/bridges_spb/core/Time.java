@@ -1,4 +1,4 @@
-package com.example.core;
+package com.ad.bridges_spb.core;
 
 import java.util.Calendar;
 

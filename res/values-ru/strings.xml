@@ -14,4 +14,21 @@
 
     <string name="all_bridges_tab_label">Все</string>
     <string name="favourites_bridges_tab_label">Избранные</string>
+
+    <string name="after_part">через</string>
+    <string name="km_part">км</string>
+
+    <string name="bn_Volodarskij">Володарский</string>
+    <string name="bn_Finljandskij">Финляндский</string>
+    <string name="bn_AleksandraNevskogo">Александра Невского</string>
+    <string name="bn_Bolsheohtinskij">Большеохтинский</string>
+    <string name="bn_Litejnyj">Литейный</string>
+    <string name="bn_Troickij">Троицкий</string>
+    <string name="bn_Dvorcovyj">Дворцовый</string>
+    <string name="bn_Blagovewenskij">Благовещенский</string>
+    <string name="bn_Birzhevoj">Биржевой</string>
+    <string name="bn_Tuchkov">Тучков</string>
+    <string name="bn_Sampsonievskij">Сампсониевский</string>
+    <string name="bn_Grenaderskij">Гренадерский</string>
+    <string name="bn_Kantemirovskij">Кантемировский</string>
 </resources>

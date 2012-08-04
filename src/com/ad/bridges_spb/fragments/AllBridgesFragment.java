@@ -1,19 +1,12 @@
-package com.example.fragments;
+package com.ad.bridges_spb.fragments;
 
-import android.content.Intent;
-import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import com.example.BridgesListAdapter;
-import com.example.R;
-import com.example.core.BridgeDescription;
-
-import static com.example.LocationUtil.locationUri;
+import com.ad.bridges_spb.BridgesListAdapter;
+import com.ad.bridges_spb.R;
 
 /**
  * Created with IntelliJ IDEA.

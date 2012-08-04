@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.ad.bridges_spb.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import com.example.BridgesListAdapter;
-import com.example.R;
-import com.example.core.Bridge;
-import com.example.core.BridgesListener;
-import com.example.core.SortingOrder;
+import com.ad.bridges_spb.BridgesListAdapter;
+import com.ad.bridges_spb.R;
+import com.ad.bridges_spb.core.Bridge;
+import com.ad.bridges_spb.core.SortingOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +77,7 @@ public class FavouriteBridgesFragment extends AbstractFragment {
         } else {
             adapter.remove(bridge);
         }
-        adapter.sort(sortingOrder);
+        adapter.sort(activity.getSortingOrder());
         updateButtonVisibility();
         updated();
     }

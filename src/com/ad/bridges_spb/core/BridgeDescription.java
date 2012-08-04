@@ -1,16 +1,16 @@
-package com.example.core;
+package com.ad.bridges_spb.core;
 
 import android.location.Location;
 
 import java.util.List;
 
 public class BridgeDescription {
-    public final String name;
+    public final int nameId;
     public final List<ClosedInterval> closedIntervals;
     public final Location location;
 
-    public BridgeDescription(String name, Location location, List<ClosedInterval> closedIntervals) {
-        this.name = name;
+    public BridgeDescription(int nameId, Location location, List<ClosedInterval> closedIntervals) {
+        this.nameId = nameId;
         this.closedIntervals = closedIntervals;
         this.location = location;
     }

@@ -1,4 +1,4 @@
-package com.example;
+package com.ad.bridges_spb;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
