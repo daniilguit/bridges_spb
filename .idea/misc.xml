@@ -19,6 +19,7 @@
         <option value="$SHERLOCK_PATH$/pom.xml" />
         <option value="$SHERLOCK_PATH$/pom.xml" />
         <option value="$SHERLOCK_PATH$/pom.xml" />
+        <option value="$SHERLOCK_PATH$/library/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

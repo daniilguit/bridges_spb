@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$SHERLOCK_PATH$/library/actionbarsherlock.iml" filepath="$SHERLOCK_PATH$/library/actionbarsherlock.iml" />
       <module fileurl="file://$PROJECT_DIR$/bridges.iml" filepath="$PROJECT_DIR$/bridges.iml" />
       <module fileurl="file://$SHERLOCK_PATH$/library/library.iml" filepath="$SHERLOCK_PATH$/library/library.iml" />
     </modules>
